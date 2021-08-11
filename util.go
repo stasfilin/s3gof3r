@@ -89,9 +89,9 @@ func checkClose(c io.Closer, err error) {
 }
 
 func getenv(key, fallback string) string {
-	value := os.Getenv(key)
-	if len(value) == 0 {
-		return fallback
+	value, result := os.LookupEnv(key)
+	if result {
+		return value
 	}
-	return value
+	return fallback
 }
