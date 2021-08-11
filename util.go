@@ -2,6 +2,7 @@ package s3gof3r
 
 import (
 	"bytes"
+	"os"
 
 	"encoding/xml"
 	"fmt"
@@ -85,4 +86,12 @@ func checkClose(c io.Closer, err error) {
 		}
 	}
 
+}
+
+func getenv(key, fallback string) string {
+	value := os.Getenv(key)
+	if len(value) == 0 {
+		return fallback
+	}
+	return value
 }
